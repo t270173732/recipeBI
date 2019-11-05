@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>处方云共享平台</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<body class="bg01">
+    <header class="header">
+        <h1>处方云共享平台</h1>
+    </header>
+    <div class="time"></div>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="fill-h">
+                <div class="col-lg-3 col-md-12 fill-h">
+                    <div class="xpanel-wrapper xpanel-wrapper-1">
+                        <h2>处方总量占比</h2>
+                        <div class="col-lg-4 col-md-4 fill-h text-center margin-top-20">
+                            <div class="font16">连锁药店</div>
+                            <div class="font28 margin-top-10 storeRecipeTotal"></div>
+                            <div id="store-pie" class="pie margin-top-20"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 fill-h text-center margin-top-20">
+                            <div class="font16">医疗机构</div>
+                            <div class="font28 margin-top-10 hosRecipeTotal"></div>
+                            <div id="hos-pie" class="pie margin-top-20"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 fill-h text-center margin-top-20">
+                            <div class="font16">平台机构</div>
+                            <div class="font28 margin-top-10 platRecipeTotal"></div>
+                            <div id="plat-pie" class="pie margin-top-20"></div>
+                        </div>
+                        <div id="pie-chart"></div>
+                    </div>
+                    <div class="xpanel-wrapper xpanel-wrapper-1">
+                        <!--<h2>医疗机构处方排名</h2>-->
+                        <h2>
+                            <select name="1" id="testSelect" onchange="selectChange()">
+                                <option value="1">医疗机构处方排名</option>
+                                <option value="2">药店处方排名</option>
+                                <option value="3">平台处方排名</option>
+                            </select>
+                        </h2>
+                        <div class="recipe-rank margin-top-10">
+                            <div class="rank-item">
+                                <div class="point"></div>
+                                <div class="hos-name">
+                                    <span>重庆市第七人民医院</span>
+                                    <span>6696</span>
+                                </div>
+                                <div class="item-after">
+                                    <div class="arrow-down"></div>
+                                    <span>79.9</span>
+                                </div>
+
+                            </div>
+                            <div class="rank-item">
+                                <div class="point"></div>
+                                <div class="hos-name">
+                                    <span>重庆市精卫</span>
+                                    <span>6696</span>
+                                </div>
+                                <div class="item-after">
+                                    <div class="arrow-down"></div>
+                                    <span>69.9</span>
+                                </div>
+                            </div>
+                            <div class="rank-item">
+                                <div class="point"></div>
+                                <div class="hos-name">
+                                    <span>重庆市第六人民医院</span>
+                                    <span>6696</span>
+                                </div>
+                                <div class="item-after">
+                                    <div class="arrow-down"></div>
+                                    <span>59.7</span>
+                                </div>
+
+                            </div>
+                            <div class="rank-item">
+                                <div class="point"></div>
+                                <div class="hos-name">
+                                    <span>重庆市第六人民医院</span>
+                                    <span>6696</span>
+                                </div>
+                                <div class="item-after">
+                                    <div class="arrow-down"></div>
+                                    <span>59.7</span>
+                                </div>
+
+                            </div>
+                            <div class="rank-item">
+                                <div class="point"></div>
+                                <div class="hos-name">
+                                    <span>重庆市第六人民医院</span>
+                                    <span>6696</span>
+                                </div>
+                                <div class="item-after">
+                                    <div class="arrow-down"></div>
+                                    <span>59.7</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xpanel-wrapper xpanel-wrapper-1">
+                        <h2>审方总量趋势</h2>
+                        <div id="authToal" style="height:80%"></div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12 fill-h">
+                    <div class="total margin-top-10">
+                        <div class="font28">处方流转总量：<span id="recipeTotal"></span></div>
+                        <div class="font28">今日处方量：<span id="todayTotal"></span></div>
+                    </div>
+                    <div class='mychart'style="height:90%" id='mychart'></div>
+                </div>
+                <div class="col-lg-4 col-md-12 fill-h">
+                    <div class="xpanel-wrapper xpanel-wrapper-1">
+                        <h2>审方问题总量排行</h2>
+                        <div id="question-rank" style="height:80%" class="margin-top-10"></div>
+                    </div>
+                    <div class="xpanel-wrapper xpanel-wrapper-1">
+                        <h2>不规则处方实时轮播</h2>
+                        <div id="irregular-recipe" style="height:80%"></div>
+                    </div>
+                    <div class="xpanel-wrapper xpanel-wrapper-1">
+                        <h2>审方问题占比</h2>
+                        <div id="auth-question" style="height:80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/chongqingMap.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
